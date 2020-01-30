@@ -4,6 +4,8 @@ void main() {
   runApp(MyApp());
 }
 
+
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.deepPurple,
           secondaryHeaderColor: Colors.deepOrange,
         ),
-        home: Container(child: DepartamentosPage(title: 'Punto Función: Ejemplo')));
+        home: Container(
+            child: DepartamentosPage(title: 'Punto Función: Ejemplo')));
   }
 }
 
@@ -49,6 +52,24 @@ class _DepartamentosPageState extends State<DepartamentosPage> {
     });
   }
 
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Business',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: School',
+      style: optionStyle,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +90,24 @@ class _DepartamentosPageState extends State<DepartamentosPage> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        //backgroundColor: Colors.deepPurple,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            title: Text('Departamentos'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            title: Text('Empleados'),
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        //selectedItemColor: Colors.deepOrangeAccent,
+        //onTap: _onItemTapped,
+      ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepOrange,
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
