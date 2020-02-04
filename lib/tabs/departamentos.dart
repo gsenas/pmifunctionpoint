@@ -69,22 +69,20 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
             return null;
           }
 
-          return _buildRow(_departamentos[index], index);
+          return _buildRow(_departamentos[index],_departamentosHC[index].toString(), index);
         });
   }
 
-  Widget _buildRow(String pareja, int i) {
-    TextStyle _tipoLetra = TextStyle(
-        fontSize: 32,
-        fontFamily: "Arial");
-
+  Widget _buildRow(String dpto, String headcount, int i) {
     return new ListTile(
       title: new Text(
-        pareja,
-        style: _tipoLetra,
+        dpto,
+        style: TextStyle(
+            fontSize: 32,
+            fontFamily: "Arial"),
         textAlign: TextAlign.left,
       ),
-      subtitle: new Text("100 empleados"),
+      subtitle: new Text('$headcount empleados'),
       trailing: Icon(Icons.keyboard_arrow_right),
     );
   }
