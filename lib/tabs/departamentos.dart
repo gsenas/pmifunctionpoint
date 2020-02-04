@@ -1,4 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+
+String _tipoFuente = "Times New Roman";
 
 class DepartamentosTab extends StatefulWidget {
   DepartamentosTab({Key key, this.title}) : super(key: key);
@@ -10,54 +14,95 @@ class DepartamentosTab extends StatefulWidget {
 }
 
 class _DepartamentosTabState extends State<DepartamentosTab> {
-  int _counter = 0;
+  final List<String> _departamentos = <String>[
+    "Dirección",
+    "Ventas",
+    "I+D",
+    "Financiero",
+    "Producción",
+    "Informática",
+    "Legal",
+    "Marketing",
+    "Recursos Humanos",
+    "Formación",
+    "Soporte"
+  ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  final List<int> _departamentosHC = <int>[
+    3,
+    15,
+    12,
+    6,
+    55,
+    10,
+    5,
+    12,
+    7,
+    2,
+    4
+  ];
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
+    return new Scaffold(
+      body: _buildAlfabeto(),
+    floatingActionButton: FloatingActionButton(
+    backgroundColor: Colors.deepOrange,
+    //onPressed: _incrementCounter,
+    tooltip: 'Increment',
+    child: Icon(Icons.add)
+    ));
+  }
+
+  Widget _buildAlfabeto() {
+    return new ListView.builder(
+        padding: const EdgeInsets.all(16.0),
+        itemBuilder: (BuildContext _context, int i) {
+          // Add a one-pixel-high divider widget before each row
+          // in the ListView.
+          if (i.isOdd) {
+            return new Divider();
+          }
+
+          final int index = i ~/ 2;
+
+          if (index >= _departamentos.length) {
+            return null;
+          }
+
+          return _buildRow(_departamentos[index], index);
+        });
+  }
+
+  Widget _buildRow(String pareja, int i) {
+    TextStyle _tipoLetra = TextStyle(
+        fontSize: 32,
+        fontFamily: "Arial");
+
+    return new ListTile(
+      title: new Text(
+        pareja,
+        style: _tipoLetra,
+        textAlign: TextAlign.left,
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.deepOrange,
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+      subtitle: new Text("100 empleados"),
+      trailing: Icon(Icons.keyboard_arrow_right),
     );
   }
+
+  ListTile _tile(String title, String fuente) => ListTile(
+      title: Text(title,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontFamily: fuente,
+            fontSize: 22 + ((fuente == "Times New Roman") ? 0.0 : 6.0),
+          )),
+      leading: Icon(
+        (_tipoFuente == fuente) ? Icons.check : null,
+        color: Colors.green,
+      ),
+      onTap: () {
+        _tipoFuente = fuente;
+        Navigator.pop(context);
+      });
 }
 
