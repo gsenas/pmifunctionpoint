@@ -1,4 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import '../globals.dart';
+
 
 class EmpleadosTab extends StatefulWidget {
   EmpleadosTab({Key key, this.title}) : super(key: key);
@@ -10,53 +16,67 @@ class EmpleadosTab extends StatefulWidget {
 }
 
 class _EmpleadosTabState extends State<EmpleadosTab> {
-  int _counter = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: UserList());
+  }
+}
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+class UserList extends StatefulWidget {
+  @override
+  _UserListState createState() => _UserListState();
+}
+
+class User {
+  String fullname, username, photoUrl;
+  User(this.fullname, this.username, this.photoUrl);
+  User.fromJson(Map<String, dynamic> json)
+    : fullname = json['name']['first'] + ' ' + json['name']['last'],
+    username = json['login']['username'],
+    photoUrl = json['picture']['medium'];
+}
+
+class _UserListState extends State<UserList> {
+  bool loading;
+  List<User> users;
+
+  void initState() {
+    users = [];
+    loading = true;
+
+    _loadUsers();
+
+    super.initState();
   }
 
-  void _incrementCounter() {
+  void _loadUsers() async {
+    final response = await http.get('https://randomuser.me/api/?nat=es&results=$numEmpleados');
+    final json = jsonDecode(response.body);
+    List<User> _users = [];
+    for (var jsonUser in json['results']) {
+      _users.add(User.fromJson(jsonUser));
+    }
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      users = _users;
+      loading = false;
     });
   }
-
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.deepOrange,
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+    if (loading) {
+      return Center(child: CircularProgressIndicator());
+    }
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(users[index].fullname),
+          subtitle: Text(users[index].username),
+          leading: CircleAvatar(backgroundImage: NetworkImage(users[index].photoUrl)),
+          trailing: Icon(Icons.keyboard_arrow_right),
+        );
+      },
+      itemCount: users.length,
     );
   }
 }

@@ -1,8 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-
-String _tipoFuente = "Times New Roman";
+import '../globals.dart';
 
 class DepartamentosTab extends StatefulWidget {
   DepartamentosTab({Key key, this.title}) : super(key: key);
@@ -86,21 +83,5 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
       trailing: Icon(Icons.keyboard_arrow_right),
     );
   }
-
-  ListTile _tile(String title, String fuente) => ListTile(
-      title: Text(title,
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontFamily: fuente,
-            fontSize: 22 + ((fuente == "Times New Roman") ? 0.0 : 6.0),
-          )),
-      leading: Icon(
-        (_tipoFuente == fuente) ? Icons.check : null,
-        color: Colors.green,
-      ),
-      onTap: () {
-        _tipoFuente = fuente;
-        Navigator.pop(context);
-      });
 }
 

@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.deepPurple,
           secondaryHeaderColor: Colors.deepOrange,
         ),
+        debugShowCheckedModeBanner: false,
         home: MyHome());
+
   }
 }
 
