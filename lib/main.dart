@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: "Punto Función: Ejemplo",
         theme: ThemeData(
-          primarySwatch: Colors.deepPurple,
-          secondaryHeaderColor: Colors.deepOrange,
+          primarySwatch: Colors.deepOrange,
+          secondaryHeaderColor: Colors.deepPurple,
         ),
         debugShowCheckedModeBanner: false,
         home: MyHome());
@@ -51,7 +51,7 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
       // Appbar
       appBar: AppBar(
         // Title
-        title: Text("Ejemplo de recuento Punto Función"),
+        title: Text("Punto Función: Ejemplo"),
         backgroundColor: Colors.deepPurple,
       ),
       // Set the TabBar view as the body of the Scaffold
