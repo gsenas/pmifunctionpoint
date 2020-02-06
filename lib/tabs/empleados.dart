@@ -14,16 +14,16 @@ class EmpleadosTab extends StatefulWidget {
 class _EmpleadosTabState extends State<EmpleadosTab> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: UserList());
+    return Scaffold(body: EmpleadosList());
   }
 }
 
-class UserList extends StatefulWidget {
+class EmpleadosList extends StatefulWidget {
   @override
-  _UserListState createState() => _UserListState();
+  _EmpleadosListState createState() => _EmpleadosListState();
 }
 
-class _UserListState extends State<UserList> {
+class _EmpleadosListState extends State<EmpleadosList> {
   void initState() {
     super.initState();
   }
@@ -37,7 +37,7 @@ class _UserListState extends State<UserList> {
       itemBuilder: (context, index) {
         return ListTile(
           title: Text(empleados[index].fullname),
-          subtitle: Text(empleados[index].username),
+          subtitle: Text(empleados[index].email),
           leading: CircleAvatar(
               backgroundImage: NetworkImage(empleados[index].photoUrl)),
           trailing: Icon(Icons.keyboard_arrow_right),

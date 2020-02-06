@@ -30,7 +30,9 @@ class Empleado {
         username =
             json['name']['first'].toString().toLowerCase().substring(0, 1) +
                 json['name']['last'].toString().toLowerCase(),
-        photoUrl = json['picture']['medium'];
+        photoUrl = json['picture']['medium'],
+        email = json['name']['first'].toString().toLowerCase().substring(0, 1) +
+            json['name']['last'].toString().toLowerCase() + companyUrl;
 }
 
 List departamentos = [
