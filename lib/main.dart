@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:pmifunctionpoint/tabs/departamentos.dart';
 import 'package:pmifunctionpoint/tabs/empleados.dart';
 
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+import 'globals.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -17,21 +22,42 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         home: MyHome());
-
   }
 }
 
 class MyHome extends StatefulWidget {
   @override
-  MyHomeState createState() => MyHomeState();
+  MyHomeState createState() {
+    return MyHomeState();
+  }
 }
 
 class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
   // Create a tab controller
   TabController controller;
 
+  void _loadEmpleados() async {
+    int totalEmpleados = Departamento.totalEmpleados(departamentos);
+
+    final response = await http
+        .get('https://randomuser.me/api/?nat=es&results=$totalEmpleados');
+    final json = jsonDecode(response.body);
+    List<Empleado> _empleados = [];
+    for (var jsonUser in json['results']) {
+      _empleados.add(Empleado.fromJson(jsonUser));
+    }
+
+    setState(() {
+      empleados = _empleados;
+      loading = false;
+    });
+    print(empleados.length.toString() + " empleados generados");
+  }
+
   @override
   void initState() {
+    _loadEmpleados();
+
     super.initState();
 
     // Initialize the Tab Controller
@@ -47,6 +73,9 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    if (loading) {
+      return Center(child: CircularProgressIndicator());
+    }
     return Scaffold(
       // Appbar
       appBar: AppBar(
@@ -72,10 +101,7 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
               icon: Icon(Icons.business),
               text: "Departamentos",
             ),
-            Tab(
-              icon: Icon(Icons.people),
-              text: "Empleados"
-            ),
+            Tab(icon: Icon(Icons.people), text: "Empleados"),
           ],
           // setup the controller
           controller: controller,
@@ -84,4 +110,3 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
     );
   }
 }
-

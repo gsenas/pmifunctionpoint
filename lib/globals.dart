@@ -1,5 +1,7 @@
 import 'dart:math';
 
+bool loading=true;
+
 class Departamento {
   static final int maxEmpleadosPorDpto = 12;
 
@@ -41,4 +43,7 @@ List departamentos = [
   Departamento("Formación",1+new Random().nextInt(Departamento.maxEmpleadosPorDpto)),
   Departamento("Soporte",1+new Random().nextInt(Departamento.maxEmpleadosPorDpto)),
 ];
+
+List<Empleado> empleados;
+
 

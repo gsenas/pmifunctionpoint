@@ -11,16 +11,14 @@ class DepartamentosTab extends StatefulWidget {
 }
 
 class _DepartamentosTabState extends State<DepartamentosTab> {
-
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: _buildListaDptos(),
-    floatingActionButton: FloatingActionButton(
-    backgroundColor: Colors.deepOrange,
-    //onPressed: _incrementCounter,
-    tooltip: 'Increment',
-    child: Icon(Icons.add)
-    ));
+        body: _buildListaDptos(),
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.deepOrange,
+            //onPressed: _incrementCounter,
+            tooltip: 'Increment',
+            child: Icon(Icons.add)));
   }
 
   Widget _buildListaDptos() {
@@ -37,9 +35,8 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
             return null;
           }
 
-          print("Total de empleados: " + Departamento.totalEmpleados(departamentos).toString());
-
-          return _buildRow(departamentos[index].nombre,departamentos[index].headCount, index);
+          return _buildRow(departamentos[index].nombre,
+              departamentos[index].headCount, index);
         });
   }
 
@@ -47,9 +44,7 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
     return new ListTile(
       title: new Text(
         dpto,
-        style: TextStyle(
-            fontSize: 28,
-            fontFamily: "Arial"),
+        style: TextStyle(fontSize: 28, fontFamily: "Arial"),
         textAlign: TextAlign.left,
       ),
       subtitle: new Text('$headcount empleados'),
@@ -57,4 +52,3 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
     );
   }
 }
-
