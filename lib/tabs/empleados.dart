@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../globals.dart';
 
-
 class EmpleadosTab extends StatefulWidget {
   EmpleadosTab({Key key, this.title}) : super(key: key);
 
@@ -39,7 +38,8 @@ class _UserListState extends State<UserList> {
         return ListTile(
           title: Text(empleados[index].fullname),
           subtitle: Text(empleados[index].username),
-          leading: CircleAvatar(backgroundImage: NetworkImage(empleados[index].photoUrl)),
+          leading: CircleAvatar(
+              backgroundImage: NetworkImage(empleados[index].photoUrl)),
           trailing: Icon(Icons.keyboard_arrow_right),
         );
       },
