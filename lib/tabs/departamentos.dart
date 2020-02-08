@@ -14,6 +14,64 @@ class DepartamentosTab extends StatefulWidget {
 class _DepartamentosTabState extends State<DepartamentosTab> {
   TextEditingController _textFieldController = TextEditingController();
 
+  void _detalleDepartamento(id) {
+    List<Widget> _datosDepartamento = [
+      SizedBox(
+        height: 20.0,
+        width: 150.0,
+        child: Divider(
+          color: Colors.teal.shade100,
+        ),
+      ),
+      Text(
+        departamentos[id].nombre,
+        style: TextStyle(
+          fontSize: 28,
+          //color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      SizedBox(
+        height: 20.0,
+        width: 150.0,
+        child: Divider(
+          color: Colors.teal.shade100,
+        ),
+      ),
+    ];
+
+    for (Empleado e in empleados) {
+      if (e.idDepartamento == departamentos[id].id) {
+        _datosDepartamento.add(Card(
+            margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+            child: ListTile(
+              title: Text(
+                e.fullname,
+                style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.teal.shade900,
+                    fontFamily: 'Source Sans Pro'),
+              ),
+            )));
+      }
+    }
+
+    Navigator.of(context).push(
+      new MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          return new Scaffold(
+            appBar: new AppBar(title: Text('Detalle de Departamento')),
+            body: SafeArea(
+                child: Column(
+              //mainAxisAlignment: MainAxisAlignment.center,
+              children: _datosDepartamento,
+            )),
+          );
+        },
+      ),
+    );
+  }
+
   Future<void> _displayDialog(BuildContext context) async {
     return showDialog(
         context: context,
@@ -39,8 +97,8 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
                 onPressed: () {
                   if (_textFieldController.text.toString() != '') {
                     setState(() {
-                      departamentos
-                          .add(Departamento(_textFieldController.text, 0));
+                      departamentos.add(Departamento(
+                          departamentos.length, _textFieldController.text, 0));
                       _textFieldController.clear();
                       Navigator.of(context).pop();
                     });
@@ -77,19 +135,21 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
           }
 
           return _buildRow(departamentos[index].nombre,
-              departamentos[index].headCount, index);
+              departamentos[index].empleadosAsignados(empleados), index);
         });
   }
 
   Widget _buildRow(String dpto, int headcount, int i) {
     return new ListTile(
-      title: new Text(
-        dpto,
-        style: TextStyle(fontSize: 28, fontFamily: "Arial"),
-        textAlign: TextAlign.left,
-      ),
-      subtitle: new Text('$headcount empleados'),
-      trailing: Icon(Icons.keyboard_arrow_right),
-    );
+        onTap: () {
+          _detalleDepartamento(i);
+        },
+        title: new Text(
+          dpto,
+          style: TextStyle(fontSize: 28, fontFamily: "Arial"),
+          textAlign: TextAlign.left,
+        ),
+        subtitle: new Text('$headcount empleados'),
+        trailing: Icon(Icons.keyboard_arrow_right));
   }
 }

@@ -48,6 +48,9 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
     }
 
     setState(() {
+      for (Empleado e in _empleados) {
+        e.asignarDepartamentoAzar();
+      }
       empleados = _empleados;
       loading = false;
     });
