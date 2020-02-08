@@ -20,7 +20,7 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
         height: 20.0,
         width: 150.0,
         child: Divider(
-          color: Colors.teal.shade100,
+          color: Colors.cyanAccent
         ),
       ),
       Text(
@@ -35,7 +35,7 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
         height: 20.0,
         width: 150.0,
         child: Divider(
-          color: Colors.teal.shade100,
+          color: Colors.cyanAccent
         ),
       ),
     ];
@@ -98,7 +98,7 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
                   if (_textFieldController.text.toString() != '') {
                     setState(() {
                       departamentos.add(Departamento(
-                          departamentos.length, _textFieldController.text, 0));
+                          departamentos.length+1, _textFieldController.text, 0));
                       _textFieldController.clear();
                       Navigator.of(context).pop();
                     });
