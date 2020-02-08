@@ -2,21 +2,19 @@ import 'dart:math';
 
 bool loading = true;
 
-
 class Departamento {
-  static final int maxEmpleadosPorDpto = 12;
+  static final int maxEmpleadosAdicionales = 12;
 
   int id;
   String nombre;
-  int headCount;
-  Departamento(this.id, this.nombre, this.headCount);
+  int headCountDeseado;
+  Departamento(this.id, this.nombre, this.headCountDeseado);
 
-  static int totalEmpleados(List _departamentos) {
+  static int totalHeadCountDeseado(List _departamentos) {
     int sum = 0;
     for (Departamento d in _departamentos) {
-      sum += d.headCount;
+      sum += d.headCountDeseado;
     }
-
     return sum;
   }
 
@@ -33,8 +31,7 @@ class Departamento {
 }
 
 class Empleado {
-  static final String companyUrl = '@fpcompany.org';
-  static int ultimoDptoAsignado = 1;
+  static final String correoEmpresa = '@fpcompany.org';
 
   String fullname, username, photoUrl, email;
   int idDepartamento;
@@ -43,35 +40,53 @@ class Empleado {
     fullname = json['name']['first'] + ' ' + json['name']['last'];
     username = json['name']['first'].toString().toLowerCase().substring(0, 1) + json['name']['last'].toString().toLowerCase();
     photoUrl = json['picture']['medium'];
-    email = json['name']['first'].toString().toLowerCase().substring(0, 1) + json['name']['last'].toString().toLowerCase() + companyUrl;
+    email = json['name']['first'].toString().toLowerCase().substring(0, 1) + json['name']['last'].toString().toLowerCase() + correoEmpresa;
   }
 
-  void asignarDepartamentoAzar() {
-    this.idDepartamento = 1 + new Random().nextInt(departamentos.length);
-  }
-}
+  void asignarDepartamentoAzar(_departamentos,_empleados) {
+      int _indiceDepartamento;
+      do {
+        _indiceDepartamento = new Random().nextInt(_departamentos.length);
+      } while (_departamentos[_indiceDepartamento].empleadosAsignados(_empleados)>=_departamentos[_indiceDepartamento].headCountDeseado);
+      this.idDepartamento=_departamentos[_indiceDepartamento].id;
+  }}
 
 List departamentos = [
   Departamento(1,
-      "Dirección", 1 + new Random().nextInt(Departamento.maxEmpleadosPorDpto)),
+      "Dirección", 1 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(2,
-      "Ventas", 2 + new Random().nextInt(Departamento.maxEmpleadosPorDpto)),
+      "Ventas", 2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(3,
-      "I+D", 2 + new Random().nextInt(Departamento.maxEmpleadosPorDpto)),
+      "I+D", 2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(4,
-      "Financiero", 2 + new Random().nextInt(Departamento.maxEmpleadosPorDpto)),
+      "Financiero", 2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(5,"Producción",
-      10 + new Random().nextInt(Departamento.maxEmpleadosPorDpto)),
+      10 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(6,"Informática",
-      2 + new Random().nextInt(Departamento.maxEmpleadosPorDpto)),
+      2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(7,
-      "Legal", 1 + new Random().nextInt(Departamento.maxEmpleadosPorDpto)),
+      "Legal", 1 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(8,
-      "RR.HH.", 1 + new Random().nextInt(Departamento.maxEmpleadosPorDpto)),
+      "RR.HH.", 1 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(9,
-      "Formación", 1 + new Random().nextInt(Departamento.maxEmpleadosPorDpto)),
+      "Formación", 1 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(10,
-      "Soporte", 1 + new Random().nextInt(Departamento.maxEmpleadosPorDpto)),
+      "Soporte", 1 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
 ];
+
+/*
+List departamentos = [
+Departamento(1,"Dirección", 1),
+Departamento(2,"Ventas", 2),
+Departamento(3,"I+D", 2),
+Departamento(4,"Financiero", 2),
+Departamento(5,"Producción",10),
+Departamento(6,"Informática",2),
+Departamento(7,"Legal", 1),
+Departamento(8,"RR.HH.", 1),
+Departamento(9,"Formación", 1),
+Departamento(10,"Soporte", 1),
+];
+*/
 
 List<Empleado> empleados;

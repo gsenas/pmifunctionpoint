@@ -37,7 +37,7 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
   TabController controller;
 
   void _loadEmpleados() async {
-    int totalEmpleados = Departamento.totalEmpleados(departamentos);
+    int totalEmpleados = Departamento.totalHeadCountDeseado(departamentos);
 
     final response = await http
         .get('https://randomuser.me/api/?nat=es&results=$totalEmpleados');
@@ -49,7 +49,7 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
 
     setState(() {
       for (Empleado e in _empleados) {
-        e.asignarDepartamentoAzar();
+        e.asignarDepartamentoAzar(departamentos,_empleados);
       }
       empleados = _empleados;
       loading = false;

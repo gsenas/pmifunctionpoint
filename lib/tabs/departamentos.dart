@@ -20,7 +20,7 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
         height: 20.0,
         width: 150.0,
         child: Divider(
-          color: Colors.cyanAccent
+          color: Colors.deepPurple
         ),
       ),
       Text(
@@ -35,7 +35,7 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
         height: 20.0,
         width: 150.0,
         child: Divider(
-          color: Colors.cyanAccent
+          color: Colors.deepPurple
         ),
       ),
     ];
