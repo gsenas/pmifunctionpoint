@@ -35,6 +35,8 @@ class Empleado {
 
   String fullname, username, photoUrl, email;
   int idDepartamento;
+  String largePhotoUrl, location, dateOfBirth, registered, phone;
+
   Empleado(this.fullname, this.username, this.photoUrl);
   Empleado.fromJson(Map<String, dynamic> json) {
     fullname = json['name']['first'] + ' ' + json['name']['last'];
@@ -44,6 +46,11 @@ class Empleado {
     email = json['name']['first'].toString().toLowerCase().substring(0, 1) +
         json['name']['last'].toString().toLowerCase() +
         correoEmpresa;
+    phone = json['phone'];
+    largePhotoUrl = json['picture']['large'];
+    location = json['location']['city'];
+    dateOfBirth = json['dob']['date'];
+    registered = json['registered']['date'];
   }
 
   void asignarDepartamentoAzar(_departamentos, _empleados) {
@@ -78,25 +85,6 @@ List departamentos = [
       1 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(8, "RR.HH.",
       1 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
-  Departamento(9, "Formación",
-      1 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
-  Departamento(10, "Soporte",
-      1 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
 ];
-
-/*
-List departamentos = [
-Departamento(1,"Dirección", 1),
-Departamento(2,"Ventas", 2),
-Departamento(3,"I+D", 2),
-Departamento(4,"Financiero", 2),
-Departamento(5,"Producción",10),
-Departamento(6,"Informática",2),
-Departamento(7,"Legal", 1),
-Departamento(8,"RR.HH.", 1),
-Departamento(9,"Formación", 1),
-Departamento(10,"Soporte", 1),
-];
-*/
 
 List<Empleado> empleados;

@@ -55,6 +55,7 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
           print('Excepción capturada: ' + e.toString());
         }
       }
+      _empleados.sort((a, b) => a.fullname.compareTo(b.fullname));
       empleados = _empleados;
       loading = false;
     });
@@ -92,7 +93,7 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
       ),
       // Set the TabBar view as the body of the Scaffold
       body: TabBarView(
-        children: <Widget>[DepartamentosTab(), EmpleadosTab()],
+        children: <Widget>[EmpleadosTab(), DepartamentosTab()],
         controller: controller,
       ),
       bottomNavigationBar: Material(
@@ -104,11 +105,8 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
           labelColor: Colors.orange,
           unselectedLabelColor: Colors.grey,
           tabs: <Tab>[
-            Tab(
-              icon: Icon(Icons.business),
-              text: "Departamentos",
-            ),
             Tab(icon: Icon(Icons.people), text: "Empleados"),
+            Tab(icon: Icon(Icons.business), text: "Departamentos"),
           ],
           // setup the controller
           controller: controller,
