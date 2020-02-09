@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import '../globals.dart';
+import 'globals.dart';
 
 class DepartamentosTab extends StatefulWidget {
   DepartamentosTab({Key key, this.title}) : super(key: key);

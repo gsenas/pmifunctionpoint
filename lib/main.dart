@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pmifunctionpoint/tabs/departamentos.dart';
-import 'package:pmifunctionpoint/tabs/empleados.dart';
+import 'package:pmifunctionpoint/departamentostab.dart';
+import 'package:pmifunctionpoint/empleadostab.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -49,7 +49,11 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
 
     setState(() {
       for (Empleado e in _empleados) {
-        e.asignarDepartamentoAzar(departamentos,_empleados);
+        try {
+          e.asignarDepartamentoAzar(departamentos, _empleados);
+        } catch (e) {
+          print('Excepción capturada: ' + e.toString());
+        }
       }
       empleados = _empleados;
       loading = false;

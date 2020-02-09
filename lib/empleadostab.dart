@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../globals.dart';
+import 'globals.dart';
 
 class EmpleadosTab extends StatefulWidget {
   EmpleadosTab({Key key, this.title}) : super(key: key);
