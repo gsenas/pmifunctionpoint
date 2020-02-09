@@ -14,46 +14,80 @@ class DepartamentosTab extends StatefulWidget {
 class _DepartamentosTabState extends State<DepartamentosTab> {
   TextEditingController _textFieldController = TextEditingController();
 
-  void _detalleDepartamento(id) {
-    List<Widget> _datosDepartamento = [
-      SizedBox(
-        height: 20.0,
-        width: 150.0,
-        child: Divider(
-          color: Colors.deepPurple
-        ),
-      ),
-      Text(
-        departamentos[id].nombre,
-        style: TextStyle(
-          fontSize: 28,
-          //color: Colors.white,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      SizedBox(
-        height: 20.0,
-        width: 150.0,
-        child: Divider(
-          color: Colors.deepPurple
-        ),
-      ),
-    ];
+  void _asignarEmpleado() {
+    final snackBar = SnackBar(content: Text('¡En construcción!'));
+    Scaffold.of(context).showSnackBar(snackBar);
+  }
 
-    for (Empleado e in empleados) {
-      if (e.idDepartamento == departamentos[id].id) {
-        _datosDepartamento.add(Card(
-            margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-            child: ListTile(
-              title: Text(
-                e.fullname,
-                style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.teal.shade900,
-                    fontFamily: 'Source Sans Pro'),
-              ),
-            )));
+  void _detalleDepartamento(id) {
+    List<TableRow> _filasEmpleados() {
+      List<TableRow> _filas = [
+        TableRow(
+            decoration: BoxDecoration(
+                color: Colors.deepPurple),
+
+            children: [
+              TableCell(
+                child: Row(
+
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    new Text(
+                      "Nombre",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    new Text(
+                      "Asignación Dpto.",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ])
+      ];
+
+      for (Empleado e in empleados) {
+        if (e.idDepartamento == departamentos[id].id) {
+          _filas.add(TableRow(
+
+              children: [
+                TableCell(
+
+                  child: Row(
+
+                    //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      new Text(
+
+                        e.fullname,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                      new Text(
+                        e.registered.substring(0, 10),
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ]));
+        }
       }
+      return _filas;
     }
 
     Navigator.of(context).push(
@@ -64,7 +98,46 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
             body: SafeArea(
                 child: Column(
               //mainAxisAlignment: MainAxisAlignment.center,
-              children: _datosDepartamento,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 20.0,
+                      width: 150.0,
+                      child: Divider(color: Colors.deepPurple),
+                    ),
+                    Text(
+                      departamentos[id].nombre,
+                      style: TextStyle(
+                        fontSize: 28,
+                        //color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                      width: 150.0,
+                      child: Divider(color: Colors.deepPurple),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(25.0, 10, 25.0, 10),
+                      child: Table(
+                        border: TableBorder.all(
+                            width: 1.0, color: Colors.black),
+                        textDirection: TextDirection.ltr,
+                        children: _filasEmpleados(),
+                      ),
+                    ),
+                    RaisedButton(
+                        color: Colors.cyan,
+                        padding: const EdgeInsets.all(8.0),
+                        textColor: Colors.white,
+                        onPressed: () {
+                          _asignarEmpleado();
+                        },
+                        child: Text("ASIGNAR EMPLEADO",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ))),
+                  ],
             )),
           );
         },
@@ -97,8 +170,8 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
                 onPressed: () {
                   if (_textFieldController.text.toString() != '') {
                     setState(() {
-                      departamentos.add(Departamento(
-                          departamentos.length+1, _textFieldController.text, 0));
+                      departamentos.add(Departamento(departamentos.length + 1,
+                          _textFieldController.text, 0));
                       _textFieldController.clear();
                       Navigator.of(context).pop();
                     });
