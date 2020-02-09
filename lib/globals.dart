@@ -69,21 +69,21 @@ class Empleado {
 }
 
 List departamentos = [
-  Departamento(1, "Dirección",
+  Departamento(0, "Dirección",
       1 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
-  Departamento(2, "Ventas",
+  Departamento(1, "Ventas",
       2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(
-      3, "I+D", 2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
-  Departamento(4, "Financiero",
+      2, "I+D", 2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
+  Departamento(3, "Financiero",
       2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
-  Departamento(5, "Producción",
+  Departamento(4, "Producción",
       10 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
-  Departamento(6, "Informática",
+  Departamento(5, "Informática",
       2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
-  Departamento(7, "Legal",
+  Departamento(6, "Legal",
       1 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
-  Departamento(8, "RR.HH.",
+  Departamento(7, "RR.HH.",
       1 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
 ];
 

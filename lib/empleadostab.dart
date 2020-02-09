@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'globals.dart';
 
@@ -26,6 +27,12 @@ class EmpleadosList extends StatefulWidget {
 class _EmpleadosListState extends State<EmpleadosList> {
   void initState() {
     super.initState();
+  }
+
+  void _asignarDepartamento() {
+    final snackBar = SnackBar(content: Text('¡En construcción!'));
+
+    Scaffold.of(context).showSnackBar(snackBar);
   }
 
   void _detalleEmpleado(id) {
@@ -67,7 +74,6 @@ class _EmpleadosListState extends State<EmpleadosList> {
                     Card(
                         margin:
                         EdgeInsets.symmetric(vertical: 5.0, horizontal: 25.0),
-                        color: Colors.orange[300],
                         child: ListTile(
                             leading: Icon(
                               Icons.business,
@@ -76,6 +82,9 @@ class _EmpleadosListState extends State<EmpleadosList> {
                             title: Text(
                               departamentos[empleados[id].idDepartamento]
                                   .nombre,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ))),
                     Card(
                         margin:
@@ -117,7 +126,14 @@ class _EmpleadosListState extends State<EmpleadosList> {
                     ),
                     RaisedButton(
                       color: Colors.deepOrange,
-                      child: Text("ASIGNAR DEPARTAMENTO"),
+                      padding: const EdgeInsets.all(8.0),
+                      textColor: Colors.white,
+                      onPressed: () {
+                        _asignarDepartamento();
+                      },
+                      child: Text("ASIGNAR DEPARTAMENTO", style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      )),
                     )
                   ],
                 )),
