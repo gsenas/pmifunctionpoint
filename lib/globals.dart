@@ -3,7 +3,7 @@ import 'dart:math';
 bool loading = true;
 
 class Departamento {
-  static final int maxEmpleadosAdicionales = 12;
+  static final int maxEmpleadosAdicionales = 10;
 
   int id;
   String nombre;
@@ -78,7 +78,7 @@ List departamentos = [
   Departamento(3, "Financiero",
       2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(4, "Producción",
-      10 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
+      5 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(5, "Informática",
       2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(6, "Legal",

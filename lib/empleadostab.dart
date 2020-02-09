@@ -151,7 +151,8 @@ class _EmpleadosListState extends State<EmpleadosList> {
     return ListView.builder(
       itemBuilder: (context, index) {
         return ListTile(
-            title: Text(empleados[index].fullname),
+            title: Text(empleados[index].fullname,
+                style: TextStyle(fontWeight: FontWeight.bold)),
             subtitle: Text(empleados[index].email),
             leading: CircleAvatar(
                 backgroundImage: NetworkImage(empleados[index].photoUrl)),

@@ -23,68 +23,69 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
     List<TableRow> _filasEmpleados() {
       List<TableRow> _filas = [
         TableRow(
-            decoration: BoxDecoration(
-                color: Colors.deepPurple),
-
-            children: [
-              TableCell(
-                child: Row(
-
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    new Text(
-                      "Nombre",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+          decoration: BoxDecoration(color: Colors.deepPurple),
+          children: [
+            TableCell(
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(
+                    "Nombre",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
-                    new Text(
-                      "Asignación Dpto.",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  ),
+                )),
+            TableCell(
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(
+                    "Asignación",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
-              )
-            ])
+                  ),
+                ))
+          ],
+        )
       ];
 
       for (Empleado e in empleados) {
         if (e.idDepartamento == departamentos[id].id) {
           _filas.add(TableRow(
-
-              children: [
-                TableCell(
-
-                  child: Row(
-
-                    //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      new Text(
-
-                        e.fullname,
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                      new Text(
-                        e.registered.substring(0, 10),
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
+            children: [
+              TableCell(
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(
+                    e.fullname,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold
+                    ),
                   ),
-                )
-              ]));
+                ),
+              ),
+              TableCell(
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(
+                    e.registered.substring(0, 10),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ));
         }
       }
       return _filas;
@@ -100,9 +101,8 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
               //mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
-                      height: 20.0,
+                      height: 10.0,
                       width: 150.0,
-                      child: Divider(color: Colors.deepPurple),
                     ),
                     Text(
                       departamentos[id].nombre,
@@ -112,14 +112,13 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
-                      height: 20.0,
-                      width: 150.0,
-                      child: Divider(color: Colors.deepPurple),
-                    ),
+
                     Padding(
                       padding: EdgeInsets.fromLTRB(25.0, 10, 25.0, 10),
                       child: Table(
+                        columnWidths: const <int, TableColumnWidth>{
+                          1: FixedColumnWidth(110.0),
+                        },
                         border: TableBorder.all(
                             width: 1.0, color: Colors.black),
                         textDirection: TextDirection.ltr,
