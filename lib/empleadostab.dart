@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:pmifunctionpoint/asignar.dart';
+
 
 import 'globals.dart';
 
@@ -27,12 +29,6 @@ class EmpleadosList extends StatefulWidget {
 class _EmpleadosListState extends State<EmpleadosList> {
   void initState() {
     super.initState();
-  }
-
-  void _asignarDepartamento() {
-    final snackBar = SnackBar(content: Text('¡En construcción!'));
-
-    Scaffold.of(context).showSnackBar(snackBar);
   }
 
   void _detalleEmpleado(id) {
@@ -133,7 +129,7 @@ class _EmpleadosListState extends State<EmpleadosList> {
                             padding: const EdgeInsets.all(8.0),
                             textColor: Colors.white,
                             onPressed: () {
-                              _asignarDepartamento();
+                              asignarEmpleadoDpto(id, null, context);
                             },
                             child: Text("ASIGNAR DEPARTAMENTO",
                                 style: TextStyle(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'globals.dart';
+import 'package:pmifunctionpoint/asignar.dart';
+
 
 class DepartamentosTab extends StatefulWidget {
   DepartamentosTab({Key key, this.title}) : super(key: key);
@@ -13,11 +15,6 @@ class DepartamentosTab extends StatefulWidget {
 
 class _DepartamentosTabState extends State<DepartamentosTab> {
   TextEditingController _textFieldController = TextEditingController();
-
-  void _asignarEmpleado() {
-    final snackBar = SnackBar(content: Text('¡En construcción!'));
-    Scaffold.of(context).showSnackBar(snackBar);
-  }
 
   void _detalleDepartamento(id) {
     List<TableRow> _filasEmpleados() {
@@ -136,7 +133,7 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
                               padding: const EdgeInsets.all(8.0),
                               textColor: Colors.white,
                               onPressed: () {
-                                _asignarEmpleado();
+                                asignarEmpleadoDpto(id, null, context);
                               },
                               child: Text("ASIGNAR EMPLEADO",
                                   style: TextStyle(
