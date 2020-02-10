@@ -44,99 +44,111 @@ class _EmpleadosListState extends State<EmpleadosList> {
               title: Text('Detalle de Empleado'),
               backgroundColor: Colors.cyan,
             ),
-            body: SafeArea(
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 15.0,
-                      width: 150.0,
-                    ),
-                    CircleAvatar(
-                      radius: 75.0,
-                      backgroundImage: NetworkImage(
-                          empleados[id].largePhotoUrl),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                      width: 150.0,
-                    ),
-                    Text(
-                      empleados[id].fullname,
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                      width: 150.0,
-                    ),
-                    Card(
-                        margin:
-                        EdgeInsets.symmetric(vertical: 5.0, horizontal: 25.0),
-                        child: ListTile(
-                            leading: Icon(
-                              Icons.business,
-                              color: Colors.deepPurple,
-                            ),
-                            title: Text(
-                              departamentos[empleados[id].idDepartamento]
-                                  .nombre,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ))),
-                    Card(
-                        margin:
-                        EdgeInsets.symmetric(vertical: 5.0, horizontal: 25.0),
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.phone,
-                            color: Colors.deepPurple,
+            body: CustomScrollView(
+              slivers: [
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: SafeArea(
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 15.0,
+                            width: 150.0,
                           ),
-                          title: Text(
-                            empleados[id].phone,
+                          CircleAvatar(
+                            radius: 75.0,
+                            backgroundImage:
+                            NetworkImage(empleados[id].largePhotoUrl),
                           ),
-                        )),
-                    Card(
-                        margin:
-                        EdgeInsets.symmetric(vertical: 5.0, horizontal: 25.0),
-                        child: ListTile(
-                            leading: Icon(
-                              Icons.email,
-                              color: Colors.deepPurple,
+                          SizedBox(
+                            height: 10.0,
+                            width: 150.0,
+                          ),
+                          Text(
+                            empleados[id].fullname,
+                            style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
                             ),
-                            title: Text(
-                              empleados[id].email,
-                            ))),
-                    Card(
-                        margin:
-                        EdgeInsets.symmetric(vertical: 5.0, horizontal: 25.0),
-                        child: ListTile(
-                            leading: Icon(
-                              Icons.location_on,
-                              color: Colors.deepPurple,
-                            ),
-                            title: Text(
-                              empleados[id].location,
-                            ))),
-                    SizedBox(
-                      height: 25.0,
-                      width: 150.0,
-                    ),
-                    RaisedButton(
-                      color: Colors.deepOrange,
-                      padding: const EdgeInsets.all(8.0),
-                      textColor: Colors.white,
-                      onPressed: () {
-                        _asignarDepartamento();
-                      },
-                      child: Text("ASIGNAR DEPARTAMENTO", style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                            width: 150.0,
+                          ),
+                          Card(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 5.0, horizontal: 25.0),
+                              child: ListTile(
+                                  leading: Icon(
+                                    Icons.business,
+                                    color: Colors.deepPurple,
+                                  ),
+                                  title: Text(
+                                    departamentos[empleados[id].idDepartamento]
+                                        .nombre,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ))),
+                          Card(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 5.0, horizontal: 25.0),
+                              child: ListTile(
+                                leading: Icon(
+                                  Icons.phone,
+                                  color: Colors.deepPurple,
+                                ),
+                                title: Text(
+                                  empleados[id].phone,
+                                ),
+                              )),
+                          Card(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 5.0, horizontal: 25.0),
+                              child: ListTile(
+                                  leading: Icon(
+                                    Icons.email,
+                                    color: Colors.deepPurple,
+                                  ),
+                                  title: Text(
+                                    empleados[id].email,
+                                  ))),
+                          Card(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 5.0, horizontal: 25.0),
+                              child: ListTile(
+                                  leading: Icon(
+                                    Icons.location_on,
+                                    color: Colors.deepPurple,
+                                  ),
+                                  title: Text(
+                                    empleados[id].location,
+                                  ))),
+                          SizedBox(
+                            height: 25.0,
+                            width: 150.0,
+                          ),
+                          RaisedButton(
+                            color: Colors.deepOrange,
+                            padding: const EdgeInsets.all(8.0),
+                            textColor: Colors.white,
+                            onPressed: () {
+                              _asignarDepartamento();
+                            },
+                            child: Text("ASIGNAR DEPARTAMENTO",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                )),
+                          ),
+                          SizedBox(
+                            height: 25.0,
+                            width: 150.0,
+                          ),
+                        ],
                       )),
-                    )
-                  ],
-                )),
+                )
+              ],
+            ),
           );
         },
       ),

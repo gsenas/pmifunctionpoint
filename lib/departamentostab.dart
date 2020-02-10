@@ -31,7 +31,7 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
                   child: Text(
                     "Nombre",
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -45,7 +45,7 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
                     "Asignación",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -60,26 +60,28 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
           _filas.add(TableRow(
             children: [
               TableCell(
+                verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Text(
                     e.fullname,
                     textAlign: TextAlign.left,
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold
                     ),
                   ),
                 ),
               ),
               TableCell(
+                verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Text(
                     e.registered.substring(0, 10),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                     ),
                   ),
                 ),
@@ -96,48 +98,59 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
         builder: (BuildContext context) {
           return new Scaffold(
             appBar: new AppBar(title: Text('Detalle de Departamento')),
-            body: SafeArea(
-                child: Column(
-              //mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 10.0,
-                      width: 150.0,
-                    ),
-                    Text(
-                      departamentos[id].nombre,
-                      style: TextStyle(
-                        fontSize: 28,
-                        //color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(25.0, 10, 25.0, 10),
-                      child: Table(
-                        columnWidths: const <int, TableColumnWidth>{
-                          1: FixedColumnWidth(110.0),
-                        },
-                        border: TableBorder.all(
-                            width: 1.0, color: Colors.black),
-                        textDirection: TextDirection.ltr,
-                        children: _filasEmpleados(),
-                      ),
-                    ),
-                    RaisedButton(
-                        color: Colors.cyan,
-                        padding: const EdgeInsets.all(8.0),
-                        textColor: Colors.white,
-                        onPressed: () {
-                          _asignarEmpleado();
-                        },
-                        child: Text("ASIGNAR EMPLEADO",
+            body: CustomScrollView(
+              slivers: [
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: SafeArea(
+                      child: Column(
+                        //mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 10.0,
+                            width: 150.0,
+                          ),
+                          Text(
+                            departamentos[id].nombre,
                             style: TextStyle(
+                              fontSize: 28,
+                              //color: Colors.white,
                               fontWeight: FontWeight.bold,
-                            ))),
-                  ],
-            )),
+                            ),
+                          ),
+
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(25.0, 10, 25.0, 10),
+                            child: Table(
+                              columnWidths: const <int, TableColumnWidth>{
+                                1: FixedColumnWidth(120.0),
+                              },
+                              border: TableBorder.all(
+                                  width: 1.0, color: Colors.black),
+                              textDirection: TextDirection.ltr,
+                              children: _filasEmpleados(),
+                            ),
+                          ),
+                          RaisedButton(
+                              color: Colors.cyan,
+                              padding: const EdgeInsets.all(8.0),
+                              textColor: Colors.white,
+                              onPressed: () {
+                                _asignarEmpleado();
+                              },
+                              child: Text("ASIGNAR EMPLEADO",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ))),
+                          SizedBox(
+                            height: 10.0,
+                            width: 150.0,
+                          ),
+                        ],
+                      )),
+                )
+              ],
+            ),
           );
         },
       ),

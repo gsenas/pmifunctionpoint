@@ -76,15 +76,15 @@ List departamentos = [
   Departamento(
       2, "I+D", 2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(3, "Financiero",
-      2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
+      3 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(4, "Producción",
-      5 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
+      8 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(5, "Informática",
-      2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
+      4 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(6, "Legal",
-      1 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
+      2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
   Departamento(7, "RR.HH.",
-      1 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
+      2 + new Random().nextInt(Departamento.maxEmpleadosAdicionales)),
 ];
 
 List<Empleado> empleados;
