@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pmifunctionpoint/departamentostab.dart';
 import 'package:pmifunctionpoint/empleadostab.dart';
 
-
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -101,6 +100,7 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
         color: Colors.deepPurple,
         child: TabBar(
           indicatorColor: Colors.orange,
+          labelPadding: EdgeInsets.fromLTRB(0, 0, 0, 10),
           labelStyle: TextStyle(fontWeight: FontWeight.bold),
           unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
           labelColor: Colors.orange,

@@ -31,15 +31,31 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
             onWillPop: null,
             child: Scrollbar(
               child: ListView(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(1.0),
                   children: <Widget>[
+                    //SizedBox(height: 50),
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: ListTile(
+                          leading:
+                              Icon(Icons.person, size: 100, color: Colors.cyan),
+                          title: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                            child: Icon(Icons.arrow_right, size: 100),
+                          ),
+                          trailing: Icon(Icons.business,
+                              size: 100, color: Colors.deepOrange)),
+                    ),
                     ListTile(
-                      title: const Text('Empleado:'),
-                      trailing: DropdownButton<String>(
+                      leading: Text('Empleado:',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20.0)),
+                      title: DropdownButton<String>(
                         value: 'One',
                         onChanged: (String e) {
                           _asignarE();
                         },
+                        isExpanded: true,
                         items: <String>[
                           'One',
                           'Two',
@@ -66,13 +82,17 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
                         }).toList(),
                       ),
                     ),
+                    SizedBox(height: 25),
                     ListTile(
-                      title: const Text('Departamento:'),
-                      trailing: DropdownButton<String>(
+                      leading: Text('Departamento:',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20.0)),
+                      title: DropdownButton<String>(
                         value: 'One',
                         onChanged: (String e) {
                           _asignarE();
                         },
+                        isExpanded: true,
                         items: <String>[
                           'One',
                           'Two',

@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'globals.dart';
 import 'package:pmifunctionpoint/asignar.dart';
 
-
 class DepartamentosTab extends StatefulWidget {
   DepartamentosTab({Key key, this.title}) : super(key: key);
 
@@ -24,16 +23,16 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
           children: [
             TableCell(
                 child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text(
-                    "Nombre",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                )),
+              padding: const EdgeInsets.all(4.0),
+              child: Text(
+                "Nombre",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )),
             TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Padding(
@@ -63,10 +62,7 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
                   child: Text(
                     e.fullname,
                     textAlign: TextAlign.left,
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold
-                    ),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -101,50 +97,49 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
                   hasScrollBody: false,
                   child: SafeArea(
                       child: Column(
-                        //mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          SizedBox(
-                            height: 10.0,
-                            width: 150.0,
-                          ),
-                          Text(
-                            departamentos[id].nombre,
-                            style: TextStyle(
-                              fontSize: 28,
-                              //color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(25.0, 10, 25.0, 10),
-                            child: Table(
-                              columnWidths: const <int, TableColumnWidth>{
-                                1: FixedColumnWidth(120.0),
-                              },
-                              border: TableBorder.all(
-                                  width: 1.0, color: Colors.black),
-                              textDirection: TextDirection.ltr,
-                              children: _filasEmpleados(),
-                            ),
-                          ),
-                          RaisedButton(
-                              color: Colors.cyan,
-                              padding: const EdgeInsets.all(8.0),
-                              textColor: Colors.white,
-                              onPressed: () {
-                                asignarEmpleadoDpto(id, null, context);
-                              },
-                              child: Text("ASIGNAR EMPLEADO",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ))),
-                          SizedBox(
-                            height: 10.0,
-                            width: 150.0,
-                          ),
-                        ],
-                      )),
+                    //mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 10.0,
+                        width: 150.0,
+                      ),
+                      Text(
+                        departamentos[id].nombre,
+                        style: TextStyle(
+                          fontSize: 28,
+                          //color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(25.0, 10, 25.0, 10),
+                        child: Table(
+                          columnWidths: const <int, TableColumnWidth>{
+                            1: FixedColumnWidth(120.0),
+                          },
+                          border:
+                              TableBorder.all(width: 1.0, color: Colors.black),
+                          textDirection: TextDirection.ltr,
+                          children: _filasEmpleados(),
+                        ),
+                      ),
+                      RaisedButton(
+                          color: Colors.cyan,
+                          padding: const EdgeInsets.all(8.0),
+                          textColor: Colors.white,
+                          onPressed: () {
+                            asignarEmpleadoDpto(id, null, context);
+                          },
+                          child: Text("ASIGNAR EMPLEADO",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ))),
+                      SizedBox(
+                        height: 10.0,
+                        width: 150.0,
+                      ),
+                    ],
+                  )),
                 )
               ],
             ),
@@ -159,7 +154,10 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
         context: context,
         builder: (context) {
           return CupertinoAlertDialog(
-            title: Text('Crear nuevo'),
+            title: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+              child: Text('Crear nuevo'),
+            ),
             content: CupertinoTextField(
               autofocus: true,
               controller: _textFieldController,
