@@ -6,6 +6,34 @@ String _asignarE() {
 }
 
 void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
+  //Asignamos por defecto el departamento en el que ya está el empleado
+  if (idDpto == null && idEmpleado != null) {
+    idDpto = empleados[idEmpleado].idDepartamento;
+  }
+
+  List<DropdownMenuItem<int>> _buildDropdownEmpleados() {
+    List<DropdownMenuItem<int>> items = List();
+
+    int index = 0;
+
+    for (Empleado e in empleados) {
+      items.add(DropdownMenuItem(value: index++, child: Text(e.fullname)));
+    }
+
+    return items;
+  }
+
+  List<DropdownMenuItem<int>> _buildDropdownDepartamentos() {
+    List<DropdownMenuItem<int>> items = List();
+
+    for (Departamento d in departamentos) {
+      items.add(DropdownMenuItem(value: d.id, child: Text(d.nombre)));
+      print(d.id);
+    }
+
+    return items;
+  }
+
   Navigator.of(context).push(
     new MaterialPageRoute<void>(
       builder: (BuildContext context) {
@@ -50,36 +78,13 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
                       leading: Text('Empleado:',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20.0)),
-                      title: DropdownButton<String>(
-                        value: 'One',
-                        onChanged: (String e) {
+                      title: DropdownButton<int>(
+                        value: idEmpleado,
+                        onChanged: (int e) {
                           _asignarE();
                         },
                         isExpanded: true,
-                        items: <String>[
-                          'One',
-                          'Two',
-                          'Free',
-                          'Four',
-                          'Can',
-                          'I',
-                          'Have',
-                          'A',
-                          'Little',
-                          'Bit',
-                          'More',
-                          'Five',
-                          'Six',
-                          'Seven',
-                          'Eight',
-                          'Nine',
-                          'Ten',
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
+                        items: _buildDropdownEmpleados(),
                       ),
                     ),
                     SizedBox(height: 25),
@@ -87,36 +92,13 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
                       leading: Text('Departamento:',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20.0)),
-                      title: DropdownButton<String>(
-                        value: 'One',
-                        onChanged: (String e) {
+                      title: DropdownButton<int>(
+                        value: idDpto,
+                        onChanged: (int d) {
                           _asignarE();
                         },
                         isExpanded: true,
-                        items: <String>[
-                          'One',
-                          'Two',
-                          'Free',
-                          'Four',
-                          'Can',
-                          'I',
-                          'Have',
-                          'A',
-                          'Little',
-                          'Bit',
-                          'More',
-                          'Five',
-                          'Six',
-                          'Seven',
-                          'Eight',
-                          'Nine',
-                          'Ten',
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
+                        items: _buildDropdownDepartamentos(),
                       ),
                     )
                   ]),

@@ -128,7 +128,7 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
                           padding: const EdgeInsets.all(8.0),
                           textColor: Colors.white,
                           onPressed: () {
-                            asignarEmpleadoDpto(id, null, context);
+                            asignarEmpleadoDpto(null, id, context);
                           },
                           child: Text("ASIGNAR EMPLEADO",
                               style: TextStyle(
@@ -177,8 +177,8 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
                 onPressed: () {
                   if (_textFieldController.text.toString() != '') {
                     setState(() {
-                      departamentos.add(Departamento(departamentos.length + 1,
-                          _textFieldController.text, 0));
+                      departamentos.add(Departamento(
+                          departamentos.length, _textFieldController.text, 0));
                       _textFieldController.clear();
                       Navigator.of(context).pop();
                     });
