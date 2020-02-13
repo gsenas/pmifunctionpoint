@@ -28,7 +28,6 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
 
     for (Departamento d in departamentos) {
       items.add(DropdownMenuItem(value: d.id, child: Text(d.nombre)));
-      print(d.id);
     }
 
     return items;
