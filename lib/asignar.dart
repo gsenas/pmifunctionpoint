@@ -7,10 +7,7 @@ String _asignarE(idEmp, idDpto, context) {
 }
 
 void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
-  //Asignamos por defecto el departamento en el que ya está el empleado
-  if (idDpto == null && idEmpleado != null) {
-    idDpto = empleados[idEmpleado].idDepartamento;
-  }
+
 
   List<DropdownMenuItem<int>> _buildDropdownEmpleados() {
     List<DropdownMenuItem<int>> items = List();
@@ -18,10 +15,16 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
     int index = 0;
 
     for (Empleado e in empleados) {
-      items.add(DropdownMenuItem(value: index++, child: Text(e.fullname)));
+      if (index == idEmpleado || e.idDepartamento != idDpto)
+        items.add(DropdownMenuItem(value: index++, child: Text(e.fullname)));
     }
 
     return items;
+  }
+
+  //Asignamos por defecto el departamento en el que ya está el empleado
+  if (idDpto == null && idEmpleado != null) {
+    idDpto = empleados[idEmpleado].idDepartamento;
   }
 
   List<DropdownMenuItem<int>> _buildDropdownDepartamentos() {
@@ -49,7 +52,7 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
                       color: Colors.white,
                     )),
                 onPressed: () {
-                  //Navigator.pop(context, DismissDialogAction.save);
+                  empleados[idEmpleado].idDepartamento = idDpto;
                   Navigator.pop(context, null);
                 },
               ),
@@ -67,10 +70,7 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
                       child: ListTile(
                           leading:
                               Icon(Icons.person, size: 100, color: Colors.cyan),
-                          title: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                            child: Icon(Icons.arrow_right, size: 100),
-                          ),
+                          title: Icon(Icons.compare_arrows, size: 100),
                           trailing: Icon(Icons.business,
                               size: 100, color: Colors.deepOrange)),
                     ),

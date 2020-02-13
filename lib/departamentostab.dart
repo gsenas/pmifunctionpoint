@@ -128,7 +128,9 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
                           padding: const EdgeInsets.all(8.0),
                           textColor: Colors.white,
                           onPressed: () {
-                            asignarEmpleadoDpto(null, id, context);
+                            setState(() {
+                              asignarEmpleadoDpto(null, id, context);
+                            });
                           },
                           child: Text("ASIGNAR EMPLEADO",
                               style: TextStyle(

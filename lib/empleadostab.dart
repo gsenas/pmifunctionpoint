@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pmifunctionpoint/asignar.dart';
 
-
 import 'globals.dart';
 
 class EmpleadosTab extends StatefulWidget {
