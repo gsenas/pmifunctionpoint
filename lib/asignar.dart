@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'globals.dart';
 
-String _asignarE() {
-  return "Hola";
+String _asignarE(idEmp, idDpto, context) {
+  Navigator.pop(context, null);
+  asignarEmpleadoDpto(idEmp, idDpto, context);
 }
 
 void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
@@ -80,7 +81,7 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
                       title: DropdownButton<int>(
                         value: idEmpleado,
                         onChanged: (int e) {
-                          _asignarE();
+                          _asignarE(e, idDpto, context);
                         },
                         isExpanded: true,
                         items: _buildDropdownEmpleados(),
@@ -94,7 +95,7 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
                       title: DropdownButton<int>(
                         value: idDpto,
                         onChanged: (int d) {
-                          _asignarE();
+                          _asignarE(idEmpleado, d, context);
                         },
                         isExpanded: true,
                         items: _buildDropdownDepartamentos(),
