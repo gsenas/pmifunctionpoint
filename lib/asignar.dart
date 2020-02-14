@@ -6,7 +6,7 @@ import 'empleadostab.dart';
 
 bool volverAEmp;
 
-String _asignarE(idEmp, idDpto, context) {
+void _asignarE(idEmp, idDpto, context) {
   Navigator.pop(context, null);
   asignarEmpleadoDpto(idEmp, idDpto, context, volverAEmp);
 }
@@ -81,11 +81,12 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context, volverAEmpleado) {
                     Padding(
                       padding: const EdgeInsets.all(30.0),
                       child: ListTile(
-                          leading:
-                          Icon(Icons.person, size: 100, color: Colors.cyan),
-                          title: Icon(Icons.compare_arrows, size: 100),
-                          trailing: Icon(Icons.business,
-                              size: 100, color: Colors.deepOrange)),
+                          title: Row(children: [
+                            Icon(Icons.person, size: 100, color: Colors.cyan),
+                            Icon(Icons.compare_arrows, size: 100),
+                            Icon(Icons.business, size: 100,
+                                color: Colors.deepOrange),
+                          ])),
                     ),
                     ListTile(
                       leading: Text('Empleado:',
