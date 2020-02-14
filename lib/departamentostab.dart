@@ -3,6 +3,140 @@ import 'package:flutter/cupertino.dart';
 import 'globals.dart';
 import 'package:pmifunctionpoint/asignar.dart';
 
+void detalleDepartamento(id, context) {
+  List<TableRow> _filasEmpleados() {
+    List<TableRow> _filas = [
+      TableRow(
+        decoration: BoxDecoration(color: Colors.deepPurple),
+        children: [
+          TableCell(
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text(
+                  "Nombre",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )),
+          TableCell(
+              verticalAlignment: TableCellVerticalAlignment.middle,
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text(
+                  "Asignación",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ))
+        ],
+      )
+    ];
+
+    for (Empleado e in empleados) {
+      if (e.idDepartamento == departamentos[id].id) {
+        _filas.add(TableRow(
+          children: [
+            TableCell(
+              verticalAlignment: TableCellVerticalAlignment.middle,
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text(
+                  e.fullname,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            TableCell(
+              verticalAlignment: TableCellVerticalAlignment.middle,
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text(
+                  e.registered.substring(0, 10),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ));
+      }
+    }
+    return _filas;
+  }
+
+  Navigator.of(context).push(
+    new MaterialPageRoute<void>(
+      builder: (BuildContext context) {
+        return new Scaffold(
+          appBar: new AppBar(title: Text('Detalle de Departamento')),
+          body: CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: SafeArea(
+                    child: Column(
+                      //mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(
+                          height: 10.0,
+                          width: 150.0,
+                        ),
+                        Text(
+                          departamentos[id].nombre,
+                          style: TextStyle(
+                            fontSize: 28,
+                            //color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(25.0, 10, 25.0, 10),
+                          child: Table(
+                            columnWidths: const <int, TableColumnWidth>{
+                              1: FixedColumnWidth(120.0),
+                            },
+                            border:
+                            TableBorder.all(width: 1.0, color: Colors.black),
+                            textDirection: TextDirection.ltr,
+                            children: _filasEmpleados(),
+                          ),
+                        ),
+                        RaisedButton(
+                            color: Colors.cyan,
+                            padding: const EdgeInsets.all(8.0),
+                            textColor: Colors.white,
+                            onPressed: () {
+                              asignarEmpleadoDpto(null, id, context, false);
+                            },
+                            child: Text("ASIGNAR EMPLEADO",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ))),
+                        SizedBox(
+                          height: 10.0,
+                          width: 150.0,
+                        ),
+                      ],
+                    )),
+              )
+            ],
+          ),
+        );
+      },
+    ),
+  );
+}
+
 class DepartamentosTab extends StatefulWidget {
   DepartamentosTab({Key key, this.title}) : super(key: key);
 
@@ -14,142 +148,6 @@ class DepartamentosTab extends StatefulWidget {
 
 class _DepartamentosTabState extends State<DepartamentosTab> {
   TextEditingController _textFieldController = TextEditingController();
-
-  void _detalleDepartamento(id) {
-    List<TableRow> _filasEmpleados() {
-      List<TableRow> _filas = [
-        TableRow(
-          decoration: BoxDecoration(color: Colors.deepPurple),
-          children: [
-            TableCell(
-                child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Text(
-                "Nombre",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            )),
-            TableCell(
-                verticalAlignment: TableCellVerticalAlignment.middle,
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text(
-                    "Asignación",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ))
-          ],
-        )
-      ];
-
-      for (Empleado e in empleados) {
-        if (e.idDepartamento == departamentos[id].id) {
-          _filas.add(TableRow(
-            children: [
-              TableCell(
-                verticalAlignment: TableCellVerticalAlignment.middle,
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text(
-                    e.fullname,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              TableCell(
-                verticalAlignment: TableCellVerticalAlignment.middle,
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text(
-                    e.registered.substring(0, 10),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ));
-        }
-      }
-      return _filas;
-    }
-
-    Navigator.of(context).push(
-      new MaterialPageRoute<void>(
-        builder: (BuildContext context) {
-          return new Scaffold(
-            appBar: new AppBar(title: Text('Detalle de Departamento')),
-            body: CustomScrollView(
-              slivers: [
-                SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: SafeArea(
-                      child: Column(
-                    //mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 10.0,
-                        width: 150.0,
-                      ),
-                      Text(
-                        departamentos[id].nombre,
-                        style: TextStyle(
-                          fontSize: 28,
-                          //color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(25.0, 10, 25.0, 10),
-                        child: Table(
-                          columnWidths: const <int, TableColumnWidth>{
-                            1: FixedColumnWidth(120.0),
-                          },
-                          border:
-                              TableBorder.all(width: 1.0, color: Colors.black),
-                          textDirection: TextDirection.ltr,
-                          children: _filasEmpleados(),
-                        ),
-                      ),
-                      RaisedButton(
-                          color: Colors.cyan,
-                          padding: const EdgeInsets.all(8.0),
-                          textColor: Colors.white,
-                          onPressed: () {
-                            setState(() {
-                              asignarEmpleadoDpto(null, id, context);
-                            });
-                          },
-                          child: Text("ASIGNAR EMPLEADO",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ))),
-                      SizedBox(
-                        height: 10.0,
-                        width: 150.0,
-                      ),
-                    ],
-                  )),
-                )
-              ],
-            ),
-          );
-        },
-      ),
-    );
-  }
 
   Future<void> _displayDialog(BuildContext context) async {
     return showDialog(
@@ -224,7 +222,7 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
   Widget _buildRow(String dpto, int headcount, int i) {
     return new ListTile(
         onTap: () {
-          _detalleDepartamento(i);
+          detalleDepartamento(i, context);
         },
         title: new Text(
           dpto,

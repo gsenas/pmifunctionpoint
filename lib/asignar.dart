@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:pmifunctionpoint/departamentostab.dart';
 import 'globals.dart';
+
+import 'empleadostab.dart';
+
+bool volverAEmp;
 
 String _asignarE(idEmp, idDpto, context) {
   Navigator.pop(context, null);
-  asignarEmpleadoDpto(idEmp, idDpto, context);
+  asignarEmpleadoDpto(idEmp, idDpto, context, volverAEmp);
 }
 
-void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
-
+void asignarEmpleadoDpto(idEmpleado, idDpto, context, volverAEmpleado) {
+  volverAEmp = volverAEmpleado;
 
   List<DropdownMenuItem<int>> _buildDropdownEmpleados() {
     List<DropdownMenuItem<int>> items = List();
@@ -15,8 +20,10 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
     int index = 0;
 
     for (Empleado e in empleados) {
-      if (index == idEmpleado || e.idDepartamento != idDpto)
-        items.add(DropdownMenuItem(value: index++, child: Text(e.fullname)));
+      //TODO: Arregla esto
+      //index++;
+      //if (index == idEmpleado || e.idDepartamento != idDpto)
+      items.add(DropdownMenuItem(value: index++, child: Text(e.fullname)));
     }
 
     return items;
@@ -54,6 +61,12 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
                 onPressed: () {
                   empleados[idEmpleado].idDepartamento = idDpto;
                   Navigator.pop(context, null);
+                  Navigator.pop(context, null);
+                  if (volverAEmpleado) {
+                    detalleEmpleado(idEmpleado, context);
+                  } else {
+                    detalleDepartamento(idDpto, context);
+                  }
                 },
               ),
             ],
@@ -69,7 +82,7 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context) {
                       padding: const EdgeInsets.all(30.0),
                       child: ListTile(
                           leading:
-                              Icon(Icons.person, size: 100, color: Colors.cyan),
+                          Icon(Icons.person, size: 100, color: Colors.cyan),
                           title: Icon(Icons.compare_arrows, size: 100),
                           trailing: Icon(Icons.business,
                               size: 100, color: Colors.deepOrange)),
