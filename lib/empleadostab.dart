@@ -159,9 +159,10 @@ class _EmpleadosListState extends State<EmpleadosList> {
       itemBuilder: (context, index) {
         return ListTile(
             title: Text(empleados[index].fullname,
-                style: TextStyle(fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
             subtitle: Text(empleados[index].email),
             leading: CircleAvatar(
+                radius: 25.0,
                 backgroundImage: NetworkImage(empleados[index].photoUrl)),
             trailing: Icon(Icons.keyboard_arrow_right),
             onTap: () {

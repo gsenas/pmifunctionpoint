@@ -226,7 +226,7 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
         },
         title: new Text(
           dpto,
-          style: TextStyle(fontSize: 28, fontFamily: "Arial"),
+          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
           textAlign: TextAlign.left,
         ),
         subtitle: new Text('$headcount empleados'),

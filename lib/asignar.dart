@@ -1,7 +1,11 @@
+import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:pmifunctionpoint/departamentostab.dart';
+
 import 'globals.dart';
 
+
+import 'departamentostab.dart';
 import 'empleadostab.dart';
 
 bool volverAEmp;
@@ -60,6 +64,10 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context, volverAEmpleado) {
                     )),
                 onPressed: () {
                   empleados[idEmpleado].idDepartamento = idDpto;
+                  var now = new DateTime.now();
+                  var formatter = new DateFormat('yyyy-MM-dd');
+                  empleados[idEmpleado].registered = formatter.format(now);
+
                   Navigator.pop(context, null);
                   Navigator.pop(context, null);
                   if (volverAEmpleado) {
@@ -79,14 +87,17 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context, volverAEmpleado) {
                   children: <Widget>[
                     //SizedBox(height: 50),
                     Padding(
-                      padding: const EdgeInsets.all(30.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: ListTile(
-                          title: Row(children: [
-                            Icon(Icons.person, size: 100, color: Colors.cyan),
-                            Icon(Icons.compare_arrows, size: 100),
-                            Icon(Icons.business, size: 100,
-                                color: Colors.deepOrange),
-                          ])),
+                          title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Icon(Icons.person, size: 80,
+                                    color: Colors.cyan),
+                                Icon(Icons.compare_arrows, size: 80),
+                                Icon(Icons.business, size: 80,
+                                    color: Colors.deepOrange),
+                              ])),
                     ),
                     ListTile(
                       leading: Text('Empleado:',
