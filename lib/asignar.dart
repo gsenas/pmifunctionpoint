@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'globals.dart';
 
-
 import 'departamentostab.dart';
 import 'empleadostab.dart';
 
@@ -40,6 +39,7 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context, volverAEmpleado) {
 
   List<DropdownMenuItem<int>> _buildDropdownDepartamentos() {
     List<DropdownMenuItem<int>> items = List();
+
 
     for (Departamento d in departamentos) {
       items.add(DropdownMenuItem(value: d.id, child: Text(d.nombre)));
@@ -95,21 +95,30 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context, volverAEmpleado) {
                                 Icon(Icons.person, size: 80,
                                     color: Colors.cyan),
                                 Icon(Icons.compare_arrows, size: 80),
-                                Icon(Icons.business, size: 80,
-                                    color: Colors.deepOrange),
+                                Icon(Icons.business,
+                                    size: 80, color: Colors.deepOrange),
                               ])),
                     ),
                     ListTile(
                       leading: Text('Empleado:',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20.0)),
-                      title: DropdownButton<int>(
-                        value: idEmpleado,
-                        onChanged: (int e) {
-                          _asignarE(e, idDpto, context);
-                        },
-                        isExpanded: true,
-                        items: _buildDropdownEmpleados(),
+                      title: IgnorePointer(
+                        ignoring: volverAEmpleado,
+                        child: DropdownButton<int>(
+                          iconSize: volverAEmpleado ? 0 : 40,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color:
+                            volverAEmpleado ? Colors.grey[400] : Colors.black,
+                          ),
+                          value: idEmpleado,
+                          onChanged: (int e) {
+                            _asignarE(e, idDpto, context);
+                          },
+                          isExpanded: true,
+                          items: _buildDropdownEmpleados(),
+                        ),
                       ),
                     ),
                     SizedBox(height: 25),
@@ -117,13 +126,22 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context, volverAEmpleado) {
                       leading: Text('Departamento:',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20.0)),
-                      title: DropdownButton<int>(
-                        value: idDpto,
-                        onChanged: (int d) {
-                          _asignarE(idEmpleado, d, context);
-                        },
-                        isExpanded: true,
-                        items: _buildDropdownDepartamentos(),
+                      title: IgnorePointer(
+                        ignoring: !volverAEmpleado,
+                        child: DropdownButton<int>(
+                          iconSize: volverAEmpleado ? 40 : 0,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color:
+                            volverAEmpleado ? Colors.black : Colors.grey[400],
+                          ),
+                          value: idDpto,
+                          onChanged: (int d) {
+                            _asignarE(idEmpleado, d, context);
+                          },
+                          isExpanded: true,
+                          items: _buildDropdownDepartamentos(),
+                        ),
                       ),
                     )
                   ]),
