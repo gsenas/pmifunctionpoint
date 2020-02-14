@@ -24,10 +24,10 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context, volverAEmpleado) {
     int index = 0;
 
     for (Empleado e in empleados) {
-      //TODO: Arregla esto
-      //index++;
-      //if (index == idEmpleado || e.idDepartamento != idDpto)
-      items.add(DropdownMenuItem(value: index++, child: Text(e.fullname)));
+      if (index == idEmpleado || e.idDepartamento != idDpto)
+        items.add(DropdownMenuItem(value: index, child: Text(e.fullname)));
+
+      index++;
     }
 
     return items;
