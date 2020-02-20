@@ -163,6 +163,8 @@ class _DepartamentosTabState extends State<DepartamentosTab> {
               controller: _textFieldController,
               clearButtonMode: OverlayVisibilityMode.editing,
               placeholder: 'Nombre del departamento',
+              style: TextStyle(
+                  color: Colors.black54, decoration: TextDecoration.none),
               padding: EdgeInsets.all(10),
             ),
             actions: <Widget>[
