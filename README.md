@@ -1,7 +1,7 @@
 # Ejemplo de recuento Punto Función
 Ejemplo para recuento de Punto Función.
 
-Debería tener este aspecto una vez compilado:
+Debería tener este aspecto una vez compilado (enlace a Youtube):
 
 [![Aspecto visual](https://img.youtube.com/vi/xvaBgm_xsow/0.jpg)](https://www.youtube.com/watch?v=xvaBgm_xsow)
 
