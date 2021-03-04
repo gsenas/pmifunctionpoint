@@ -1,13 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:pmifunctionpoint/departamentostab.dart';
 import 'package:pmifunctionpoint/empleadostab.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:http_proxy/http_proxy.dart';
 
 import 'globals.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  HttpProxy httpProxy = await HttpProxy.createHttpProxy();
+  HttpOverrides.global = httpProxy;
   runApp(MyApp());
 }
 

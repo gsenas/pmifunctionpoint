@@ -12,11 +12,20 @@ dependencies:
 
   cupertino_icons: ^0.1.2
   http: ^0.12.0+2
+  http_proxy: ^1.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.8.0"
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "recursos/Icono.png"
 
 flutter:
   uses-material-design: true
+
+  
 
