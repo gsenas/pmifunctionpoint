@@ -98,7 +98,7 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
       // Appbar
       appBar: AppBar(
         // Title
-        title: Text("Punto Función: Ejemplo"),
+        title: Text("Ejemplo de aplicación"),
         backgroundColor: Colors.deepPurple,
       ),
       // Set the TabBar view as the body of the Scaffold

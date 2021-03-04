@@ -31,7 +31,7 @@ class Departamento {
 }
 
 class Empleado {
-  static final String correoEmpresa = '@fpcompany.org';
+  static final String correoEmpresa = '@company.org';
 
   String fullname, username, photoUrl, email;
   int idDepartamento;
@@ -59,8 +59,8 @@ class Empleado {
       do {
         _indiceDepartamento = new Random().nextInt(_departamentos.length);
       } while (
-      _departamentos[_indiceDepartamento].empleadosAsignados(_empleados) >=
-          _departamentos[_indiceDepartamento].headCountDeseado);
+          _departamentos[_indiceDepartamento].empleadosAsignados(_empleados) >=
+              _departamentos[_indiceDepartamento].headCountDeseado);
       this.idDepartamento = _departamentos[_indiceDepartamento].id;
     } catch (e) {
       print('Excepción capturada: ' + e.toString());
