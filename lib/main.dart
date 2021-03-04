@@ -6,14 +6,18 @@ import 'package:pmifunctionpoint/empleadostab.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
 import 'package:http_proxy/http_proxy.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 import 'globals.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  HttpProxy httpProxy = await HttpProxy.createHttpProxy();
-  HttpOverrides.global = httpProxy;
+  if (!kIsWeb) {
+    WidgetsFlutterBinding.ensureInitialized();
+    HttpProxy httpProxy = await HttpProxy.createHttpProxy();
+    HttpOverrides.global = httpProxy;
+  }
   runApp(MyApp());
 }
 
@@ -21,7 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "Punto Función: Ejemplo",
+        title: "Aplicación de ejemplo",
         theme: ThemeData(
           primarySwatch: Colors.deepOrange,
           secondaryHeaderColor: Colors.deepPurple,
