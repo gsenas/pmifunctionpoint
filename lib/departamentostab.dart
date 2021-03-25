@@ -11,16 +11,16 @@ void detalleDepartamento(id, context) {
         children: [
           TableCell(
               child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Text(
-                  "Nombre",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              )),
+            padding: const EdgeInsets.all(4.0),
+            child: Text(
+              "Nombre",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )),
           TableCell(
               verticalAlignment: TableCellVerticalAlignment.middle,
               child: Padding(
@@ -85,49 +85,49 @@ void detalleDepartamento(id, context) {
                 hasScrollBody: false,
                 child: SafeArea(
                     child: Column(
-                      //mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(
-                          height: 10.0,
-                          width: 150.0,
-                        ),
-                        Text(
-                          departamentos[id].nombre,
-                          style: TextStyle(
-                            fontSize: 28,
-                            //color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(25.0, 10, 25.0, 10),
-                          child: Table(
-                            columnWidths: const <int, TableColumnWidth>{
-                              1: FixedColumnWidth(120.0),
-                            },
-                            border:
+                  //mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 10.0,
+                      width: 150.0,
+                    ),
+                    Text(
+                      departamentos[id].nombre,
+                      style: TextStyle(
+                        fontSize: 28,
+                        //color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(25.0, 10, 25.0, 10),
+                      child: Table(
+                        columnWidths: const <int, TableColumnWidth>{
+                          1: FixedColumnWidth(120.0),
+                        },
+                        border:
                             TableBorder.all(width: 1.0, color: Colors.black),
-                            textDirection: TextDirection.ltr,
-                            children: _filasEmpleados(),
-                          ),
-                        ),
-                        RaisedButton(
-                            color: Colors.cyan,
-                            padding: const EdgeInsets.all(8.0),
-                            textColor: Colors.white,
-                            onPressed: () {
-                              asignarEmpleadoDpto(null, id, context, false);
-                            },
-                            child: Text("ASIGNAR EMPLEADO",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ))),
-                        SizedBox(
-                          height: 10.0,
-                          width: 150.0,
-                        ),
-                      ],
-                    )),
+                        textDirection: TextDirection.ltr,
+                        children: _filasEmpleados(),
+                      ),
+                    ),
+                    RaisedButton(
+                        color: Colors.cyan,
+                        padding: const EdgeInsets.all(8.0),
+                        textColor: Colors.white,
+                        onPressed: () {
+                          asignarEmpleadoDpto(null, id, context, false);
+                        },
+                        child: Text("ASIGNAR EMPLEADO",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ))),
+                    SizedBox(
+                      height: 10.0,
+                      width: 150.0,
+                    ),
+                  ],
+                )),
               )
             ],
           ),

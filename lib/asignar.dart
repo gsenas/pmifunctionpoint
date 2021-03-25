@@ -40,7 +40,6 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context, volverAEmpleado) {
   List<DropdownMenuItem<int>> _buildDropdownDepartamentos() {
     List<DropdownMenuItem<int>> items = List();
 
-
     for (Departamento d in departamentos) {
       items.add(DropdownMenuItem(value: d.id, child: Text(d.nombre)));
     }
@@ -56,7 +55,7 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context, volverAEmpleado) {
             backgroundColor: Colors.deepPurple,
             title: Text('Asignar empleado a departamento'),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 child: Text('GUARDAR',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -92,12 +91,11 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context, volverAEmpleado) {
                           title: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Icon(Icons.person, size: 80,
-                                    color: Colors.cyan),
-                                Icon(Icons.compare_arrows, size: 80),
-                                Icon(Icons.business,
-                                    size: 80, color: Colors.deepOrange),
-                              ])),
+                            Icon(Icons.person, size: 80, color: Colors.cyan),
+                            Icon(Icons.compare_arrows, size: 80),
+                            Icon(Icons.business,
+                                size: 80, color: Colors.deepOrange),
+                          ])),
                     ),
                     ListTile(
                       leading: Text('Empleado:',
@@ -109,8 +107,9 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context, volverAEmpleado) {
                           iconSize: volverAEmpleado ? 0 : 40,
                           style: TextStyle(
                             fontSize: 20.0,
-                            color:
-                            volverAEmpleado ? Colors.grey[400] : Colors.black,
+                            color: volverAEmpleado
+                                ? Colors.grey[400]
+                                : Colors.black,
                           ),
                           value: idEmpleado,
                           onChanged: (int e) {
@@ -132,8 +131,9 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context, volverAEmpleado) {
                           iconSize: volverAEmpleado ? 40 : 0,
                           style: TextStyle(
                             fontSize: 20.0,
-                            color:
-                            volverAEmpleado ? Colors.black : Colors.grey[400],
+                            color: volverAEmpleado
+                                ? Colors.black
+                                : Colors.grey[400],
                           ),
                           value: idDpto,
                           onChanged: (int d) {
