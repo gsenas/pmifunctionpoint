@@ -38,7 +38,7 @@ void asignarEmpleadoDpto(idEmpleado, idDpto, context, volverAEmpleado) {
   }
 
   List<DropdownMenuItem<int>> _buildDropdownDepartamentos() {
-    List<DropdownMenuItem<int>> items = List();
+    List<DropdownMenuItem<int>> items = [];
 
     for (Departamento d in departamentos) {
       items.add(DropdownMenuItem(value: d.id, child: Text(d.nombre)));
